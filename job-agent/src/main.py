@@ -1,6 +1,5 @@
 from models import Job, ScoredJob
-from config import GREENHOUSE_COMPANIES, KEYWORDS, EXCLUDED_KEYWORDS, SCORING_CRITERIA
-from filters.filters import is_relevant
+from config import GREENHOUSE_COMPANIES, SCORING_CRITERIA
 from scoring import calculate_score
 
 from sources.greenhouse import fetch_jobs_from_greenhouse
