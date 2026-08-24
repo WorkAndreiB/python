@@ -7,3 +7,8 @@ class Job:
     location: str
     url: str
     description: str=""
+    
+@dataclass
+class ScoredJob:
+    job: Job
+    score: int
