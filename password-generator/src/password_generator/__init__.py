@@ -1,0 +1,1 @@
+from .pass_generator import generate_password
