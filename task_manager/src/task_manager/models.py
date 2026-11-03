@@ -22,3 +22,11 @@ class Task:
     status: TaskStatus
     priority: Priority
     completion_date: date
+    
+@dataclass
+class TaskFilter:
+    status: TaskStatus | None = None
+    priority: Priority | None = None
+    completion_date: date | None = None
+    
+    
