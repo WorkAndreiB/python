@@ -27,6 +27,6 @@ class Task:
 class TaskFilter:
     status: TaskStatus | None = None
     priority: Priority | None = None
-    completion_date: date | None = None
+    # completion_date: date | None = None
     
     
