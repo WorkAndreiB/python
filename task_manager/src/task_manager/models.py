@@ -1,8 +1,7 @@
-from enum import StrEnum, Enum
+from enum import StrEnum, IntEnum
 from dataclasses import dataclass
-from datetime import date
 
-class Priority(Enum):
+class TaskPriority(IntEnum):
     URGENT = 0
     HIGH = 1
     MEDIUM = 2
@@ -20,13 +19,12 @@ class Task:
     title: str
     description: str
     status: TaskStatus
-    priority: Priority
-    completion_date: date
+    priority: TaskPriority
+
     
 @dataclass
 class TaskFilter:
     status: TaskStatus | None = None
-    priority: Priority | None = None
-    # completion_date: date | None = None
+    priority: TaskPriority | None = None
     
     
