@@ -1,5 +1,4 @@
-from task_manager import Task, TaskFilter, TaskStatus, Priority
-from datetime import date
+from task_manager import Task, TaskFilter, TaskStatus, TaskPriority
 from task_manager.storage.base import TaskStorage
 
 class TaskManager:
@@ -7,15 +6,15 @@ class TaskManager:
         self.storage = storage
         
     def create_task(self, title: str, description: str, status: TaskStatus = TaskStatus.TODO, 
-                    priority: Priority = Priority.MEDIUM, completion_date: date | None = None) -> Task:
+                    priority: TaskPriority = TaskPriority.MEDIUM) -> Task:
         """
-        Create a new task with the given title, description, status, priority, and completion date.
+        Create a new task with the given title, description, status, and priority.
 
         Args:
             title (str): The title of the task.
             description (str): The description of the task.
             status (TaskStatus, optional): The status of the task. Defaults to TaskStatus.TODO.
-            priority (Priority, optional): The priority of the task. Defaults to Priority.MEDIUM.
+            priority (TaskPriority, optional): The priority of the task. Defaults to TaskPriority.MEDIUM.
             completion_date (date | None, optional): The completion date of the task. Defaults to None.
 
         Returns:
@@ -33,7 +32,6 @@ class TaskManager:
             description=description,
             status=status,
             priority=priority,
-            completion_date=completion_date or date.today()
         )
         
         self.storage.store(task)

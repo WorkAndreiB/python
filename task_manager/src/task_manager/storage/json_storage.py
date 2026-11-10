@@ -1,9 +1,10 @@
 import json
 from datetime import date
+from typing import Any
 from pathlib import Path
 
 from task_manager.storage.base import TaskStorage
-from task_manager.models import Priority, Task, TaskFilter, TaskStatus
+from task_manager.models import TaskPriority, Task, TaskFilter, TaskStatus
 
 class JSONTaskStorage(TaskStorage):
     
@@ -15,8 +16,8 @@ class JSONTaskStorage(TaskStorage):
         # Create the parent directories if they do not exist
         self.__file_path.parent.mkdir(parents=True, exist_ok=True)
         
-        # Initialize the JSON file with an empty list if it does not exist
-        if not self.__file_path.exists():
+        # Initialize the JSON file with an empty list if it does not exist or is empty
+        if not self.__file_path.exists() or self.__file_path.stat().st_size == 0:
             self.__file_path.write_text("[]")
             
     def __load(self) -> list[Task]:
@@ -58,9 +59,8 @@ class JSONTaskStorage(TaskStorage):
             "id": task.id,
             "title": task.title,
             "description": task.description,
-            "status": task.status.value,
-            "priority": task.priority.name,
-            "completion_date": task.completion_date.isoformat(),
+            "status": task.status,
+            "priority": task.priority,
         }
         
     @staticmethod
@@ -80,8 +80,7 @@ class JSONTaskStorage(TaskStorage):
             title=data["title"],
             description=data["description"],
             status=TaskStatus(data["status"]),
-            priority=Priority[data["priority"]],
-            completion_date=date.fromisoformat(data["completion_date"]),
+            priority=TaskPriority(data["priority"]),
         )
             
     def store(self, task: Task):
