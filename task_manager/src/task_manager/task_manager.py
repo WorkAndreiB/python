@@ -5,6 +5,10 @@ class TaskManager:
     def __init__(self, storage: TaskStorage):
         self.storage = storage
         
+    def __validate_input(self, input: str):
+        if input.strip() == "":
+            raise ValueError("Input cannot be empty")
+        
     def create_task(self, title: str, description: str, status: TaskStatus = TaskStatus.TODO, 
                     priority: TaskPriority = TaskPriority.MEDIUM) -> Task:
         """
@@ -23,8 +27,8 @@ class TaskManager:
             ValueError: If the title is empty.
         """
         
-        if title.strip() == "":
-            raise ValueError("Title cannot be empty")
+        self.__validate_input(title)
+        self.__validate_input(description)
         
         task = Task(
             id=self.storage.compute_task_id(),
@@ -82,6 +86,9 @@ class TaskManager:
             task_id (int): The ID of the task to update.
             task (Task): The updated task data.
         """
+        
+        self.__validate_input(task.title)
+        self.__validate_input(task.description)
 
         self.storage.update(task_id, task)
 
