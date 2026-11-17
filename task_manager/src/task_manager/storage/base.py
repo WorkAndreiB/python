@@ -5,6 +5,10 @@ class TaskStorage(ABC):
     @abstractmethod
     def store(self, task: Task):
         pass
+
+    @abstractmethod
+    def store_all(self, tasks: list[Task]) -> None:
+        pass
     
     @abstractmethod
     def get_all(self, filter: TaskFilter | None = None) -> list[Task]:
@@ -12,6 +16,10 @@ class TaskStorage(ABC):
     
     @abstractmethod
     def compute_task_id(self) -> int:
+        pass
+    
+    @abstractmethod
+    def update(self, task_id: int, task: Task):
         pass
     
     # @abstractmethod
@@ -22,7 +30,5 @@ class TaskStorage(ABC):
     # def delete(self, task_id: int):
     #     pass
     
-    # @abstractmethod
-    # def update(self, task_id: int, task: Task):
-    #     pass
+
     
