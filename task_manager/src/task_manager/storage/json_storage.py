@@ -148,7 +148,17 @@ class JSONTaskStorage(TaskStorage):
             task (Task): The updated task data.
         """
         tasks = self.__load()
-        tasks = [task if t.id == task_id else t for t in tasks]
+        
+        if task_id != task.id:
+            raise ValueError("Task ID mismatch")
+        
+        for index, task_item in enumerate(tasks):
+            if task_item.id == task_id:
+                tasks[index] = task
+                break
+        else:
+            raise ValueError("Task not found")
+        
         self.__save(tasks)
         
     
