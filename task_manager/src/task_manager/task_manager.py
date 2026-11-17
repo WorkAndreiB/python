@@ -37,6 +37,9 @@ class TaskManager:
         self.storage.store(task)
         return task
     
+    def store_tasks(self, tasks: list[Task]):
+        self.storage.store_all(tasks)
+    
     
     def get_all_tasks(self, filter: TaskFilter | None = None) -> list[Task]:
         """
@@ -71,13 +74,14 @@ class TaskManager:
     #     """
     #     self.storage.delete(task_id)
 
-    # def update_task(self, task_id: int, task: Task):
-    #     """
-    #     Update an existing task in the storage.
+    def update_task(self, task_id: int, task: Task) -> None:
+        """
+        Update an existing task in the storage.
 
-    #     Args:
-    #         task_id (int): The ID of the task to update.
-    #         task (Task): The updated task data.
-    #     """
-    #     self.storage.update(task_id, task)
-        
+        Args:
+            task_id (int): The ID of the task to update.
+            task (Task): The updated task data.
+        """
+
+        self.storage.update(task_id, task)
+

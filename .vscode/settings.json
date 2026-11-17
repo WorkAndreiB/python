@@ -2,6 +2,9 @@
     "files.exclude": {
         "**/__pycache__": true,
         "**/.git": true,
-        "**/*.egg-info": true
+        "**/*.egg-info": true,
+        "**/.venv": true,
+        "**/.mypy_cache": true,
+        "**/build": true
     }
 }

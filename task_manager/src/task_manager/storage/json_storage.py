@@ -93,6 +93,10 @@ class JSONTaskStorage(TaskStorage):
         tasks = self.__load()
         tasks.append(task)
         self.__save(tasks)
+
+    def store_all(self, tasks: list[Task]) -> None:
+        """Replace all stored tasks."""
+        self.__save(tasks)
         
     def get_all(self, task_filter: TaskFilter | None = None) -> list[Task]:
         """
@@ -134,5 +138,17 @@ class JSONTaskStorage(TaskStorage):
         if not tasks:
             return 1
         return max(task.id for task in tasks) + 1
+    
+    def update(self, task_id: int, task: Task):
+        """
+        Update an existing task in the JSON storage.
+
+        Args:
+            task_id (int): The ID of the task to update.
+            task (Task): The updated task data.
+        """
+        tasks = self.__load()
+        tasks = [task if t.id == task_id else t for t in tasks]
+        self.__save(tasks)
         
     
