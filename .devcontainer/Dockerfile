@@ -20,3 +20,8 @@ ENV PYTHONUNBUFFERED=1
 # Default command
 CMD ["bash"]
 
+# Switch to the non-root user
+USER ${vscode}
+
+
+

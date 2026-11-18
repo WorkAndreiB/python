@@ -1,6 +1,10 @@
 {
   "name": "Work",
-  "dockerFile": "Dockerfile",
+  
+  "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
   
   "customizations": {
     "vscode": {
@@ -17,6 +21,6 @@
   "mounts": [
     "source=${env:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
   ],
-  "postCreateCommand": "git config --global user.email 'andrei.baciu94@gmail.com' && git config --global user.name 'Andrei B'"
+  "postCreateCommand": "pip install -e ./password-generator"
 
 }
