@@ -5,6 +5,7 @@
         "**/*.egg-info": true,
         "**/.venv": true,
         "**/.mypy_cache": true,
-        "**/build": true
+        "**/build": true,
+        "**/.pytest_cache": true
     }
 }
