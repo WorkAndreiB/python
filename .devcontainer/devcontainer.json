@@ -18,8 +18,9 @@
       }
     }
   },
-  "mounts": [
-    "source=${env:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+  "remoteUser": "developer",
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/developer/.ssh,type=bind,readonly"
   ],
   "postCreateCommand": "pip install -e ./password-generator"
 
