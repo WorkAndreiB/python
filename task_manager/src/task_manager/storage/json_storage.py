@@ -161,4 +161,24 @@ class JSONTaskStorage(TaskStorage):
         
         self.__save(tasks)
         
+    def delete(self, task_id: int):
+        """
+        Delete a task from the JSON storage.
+
+        Args:
+            task_id (int): The ID of the task to delete.
+        """
+        tasks = self.__load()
+        not_found = True
+
+        for index, task_item in enumerate(tasks):
+            if task_item.id == task_id:
+                del tasks[index]
+                not_found = False
+                break
+        if not_found:
+            raise ValueError("Task not found")
+
+        self.__save(tasks)
+        
     
