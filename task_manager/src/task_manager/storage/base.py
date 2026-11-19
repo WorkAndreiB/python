@@ -22,13 +22,15 @@ class TaskStorage(ABC):
     def update(self, task_id: int, task: Task):
         pass
     
+    @abstractmethod
+    def delete(self, task_id: int):
+        pass
+    
     # @abstractmethod
     # def get_task(self, task_id: int) -> Task:
     #     pass
     
-    # @abstractmethod
-    # def delete(self, task_id: int):
-    #     pass
+
     
 
     

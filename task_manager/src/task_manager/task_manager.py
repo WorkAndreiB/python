@@ -57,26 +57,16 @@ class TaskManager:
         """
         return self.storage.get_all(filter)
     
-    # def get_task_by_id(self, task_id: int) -> Task | None:
-    #     """
-    #     Retrieve a task by its ID from the storage.
 
-    #     Args:
-    #         task_id (int): The ID of the task to retrieve.
-
-    #     Returns:
-    #         Task | None: The task with the given ID, or None if not found.
-    #     """
-    #     return self.storage.get_task(task_id)
     
-    # def delete_task(self, task_id: int):
-    #     """
-    #     Delete a task by its ID from the storage.
+    def delete_task(self, task_id: int):
+        """
+        Delete a task by its ID from the storage.
 
-    #     Args:
-    #         task_id (int): The ID of the task to delete.
-    #     """
-    #     self.storage.delete(task_id)
+        Args:
+            task_id (int): The ID of the task to delete.
+        """
+        self.storage.delete(task_id)
 
     def update_task(self, task_id: int, task: Task) -> None:
         """
